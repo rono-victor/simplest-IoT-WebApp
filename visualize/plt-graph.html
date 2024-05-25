@@ -1,0 +1,28 @@
+<html>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<script>
+fetch(
+"https://api.waziup.io/api/v2/devices/UGB-PILOTS_Sensor200/sensors/TP/values"
+)
+.then((res) => res.json())
+  .then((values) => {
+  console.log("data" + JSON.stringify(values));
+  var data = [];
+  var labels = [];
+    for (value of values) {
+    data.push(value.value);
+    labels.push(value.timestamp);
+  }
+    new Chart(document.getElementById("myChart").getContext("2d"), {
+    type: "line",
+      data: {
+      labels: labels,
+      datasets: [{ label: "Device values", data: data }],
+    },
+  });
+});
+</script>
+<canvas id="myChart" width="800" height="600">Loading...</canvas>
+</body>
+</html>
