@@ -1,0 +1,14 @@
+<html>
+    <body>
+        <script>
+            fetch("https://api.waziup.io/api/v2/devices/MyDevice/sensors/TC1")
+            .then ((res) => res.json())
+            .then((json) => {
+                document.getElementById("device_value").innerHTML = "The temperature is:" + json.value.value  +  "C";
+            });
+
+        </script>
+        <h1> My Simple Application</h1>
+        <div id="device_value">Loading...</div>
+    </body>
+</html>
